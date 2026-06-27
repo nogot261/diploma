@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="panel login-panel">
+    <h1>Вход в систему</h1>
+    <form method="post">
+        <label>Логин</label>
+        <input name="login" required>
+
+        <label>Пароль</label>
+        <input name="password" type="password" required>
+
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+
+        <button type="submit">Войти</button>
+    </form>
+
+    <div class="hint">
+        <p><b>Для проверки:</b></p>
+        <p>hr / hr123</p>
+        <p>ivanov / 12345</p>
+    </div>
+</section>
+{% endblock %}

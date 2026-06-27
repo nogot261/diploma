@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="page-head">
+    <h1>Тесты</h1>
+    <a class="button" href="{{ url_for('create_test') }}">Создать тест</a>
+</div>
+
+<section class="panel">
+    {% if tests %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Название</th>
+                    <th>Проходной балл</th>
+                    <th>Действия</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for test in tests %}
+                    <tr>
+                        <td>
+                            <b>{{ test.title }}</b>
+                            <div class="muted">{{ test.description }}</div>
+                        </td>
+                        <td>{{ test.pass_score }}%</td>
+                        <td class="actions">
+                            <a href="{{ url_for('questions', test_id=test.id) }}">Вопросы</a>
+                            <a href="{{ url_for('assign_test', test_id=test.id) }}">Назначить</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Тестов пока нет.</p>
+    {% endif %}
+</section>
+{% endblock %}

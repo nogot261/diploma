@@ -1,1 +1,7 @@
 
+__pycache__/
+*.pyc
+.venv/
+venv/
+knowledge_testing.db
+.env

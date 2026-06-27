@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Вопросы теста</h1>
+<p class="muted">{{ test.title }}</p>
+
+<section class="panel">
+    <h2>Добавить вопрос</h2>
+    <form method="post">
+        <label>Текст вопроса</label>
+        <textarea name="text" rows="3" required></textarea>
+
+        <label>Вариант 1</label>
+        <input name="answer_1" required>
+
+        <label>Вариант 2</label>
+        <input name="answer_2" required>
+
+        <label>Вариант 3</label>
+        <input name="answer_3" required>
+
+        <label>Правильный вариант</label>
+        <select name="correct_answer">
+            <option value="1">Вариант 1</option>
+            <option value="2">Вариант 2</option>
+            <option value="3">Вариант 3</option>
+        </select>
+
+        <button type="submit">Добавить</button>
+    </form>
+</section>
+
+<section class="panel">
+    <h2>Список вопросов</h2>
+    {% if questions %}
+        <ol>
+            {% for question in questions %}
+                <li>{{ question.text }}</li>
+            {% endfor %}
+        </ol>
+    {% else %}
+        <p>Вопросов пока нет.</p>
+    {% endif %}
+</section>
+{% endblock %}

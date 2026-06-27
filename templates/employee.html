@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Мои тесты</h1>
+
+<section class="panel">
+    {% if assignments %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Тест</th>
+                    <th>Статус</th>
+                    <th>Результат</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in assignments %}
+                    <tr>
+                        <td>
+                            <b>{{ item.title }}</b>
+                            <div class="muted">{{ item.description }}</div>
+                        </td>
+                        <td>{{ item.status }}</td>
+                        <td>
+                            {% if item.score is not none %}
+                                {{ item.score }}%
+                            {% else %}
+                                -
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if item.status != "Завершен" %}
+                                <a class="button small" href="{{ url_for('take_test', assignment_id=item.id) }}">Пройти</a>
+                            {% else %}
+                                Завершено
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Назначенных тестов пока нет.</p>
+    {% endif %}
+</section>
+{% endblock %}

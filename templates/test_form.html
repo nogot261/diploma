@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="panel">
+    <h1>Создание теста</h1>
+    <form method="post">
+        <label>Название теста</label>
+        <input name="title" required>
+
+        <label>Описание</label>
+        <textarea name="description" rows="4"></textarea>
+
+        <label>Проходной балл, %</label>
+        <input name="pass_score" type="number" value="70" min="1" max="100" required>
+
+        <button type="submit">Сохранить</button>
+    </form>
+</section>
+{% endblock %}

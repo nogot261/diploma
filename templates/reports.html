@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Отчеты</h1>
+
+<section class="panel">
+    <table>
+        <thead>
+            <tr>
+                <th>Сотрудник</th>
+                <th>Подразделение</th>
+                <th>Тест</th>
+                <th>Статус</th>
+                <th>Результат</th>
+                <th>Итог</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in rows %}
+                <tr>
+                    <td>{{ row.full_name }}</td>
+                    <td>{{ row.department_name }}</td>
+                    <td>{{ row.title }}</td>
+                    <td>{{ row.status }}</td>
+                    <td>
+                        {% if row.score is not none %}
+                            {{ row.score }}%
+                        {% else %}
+                            -
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if row.score is none %}
+                            Не пройден
+                        {% elif row.score >= row.pass_score %}
+                            Пройден
+                        {% else %}
+                            Не сдан
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+{% endblock %}

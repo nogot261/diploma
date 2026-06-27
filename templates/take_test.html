@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="panel">
+    <h1>{{ assignment.title }}</h1>
+    <p class="muted">{{ assignment.description }}</p>
+
+    <form method="post">
+        {% for item in question_data %}
+            <div class="question">
+                <h2>{{ loop.index }}. {{ item.question.text }}</h2>
+                {% for answer in item.answers %}
+                    <label class="radio">
+                        <input type="radio" name="question_{{ item.question.id }}" value="{{ answer.id }}" required>
+                        {{ answer.text }}
+                    </label>
+                {% endfor %}
+            </div>
+        {% endfor %}
+
+        <button type="submit">Завершить тест</button>
+    </form>
+</section>
+{% endblock %}

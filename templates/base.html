@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ title or "Тестирование сотрудников" }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header class="topbar">
+        <a class="brand" href="{{ url_for('index') }}">Тестирование сотрудников</a>
+        {% if session.get("user_id") %}
+            <nav>
+                {% if session.get("role") in ["admin", "hr"] %}
+                    <a href="{{ url_for('index') }}">Тесты</a>
+                    <a href="{{ url_for('reports') }}">Отчеты</a>
+                {% endif %}
+                <span>{{ session.get("full_name") }}</span>
+                <a href="{{ url_for('logout') }}">Выход</a>
+            </nav>
+        {% endif %}
+    </header>
+
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>
